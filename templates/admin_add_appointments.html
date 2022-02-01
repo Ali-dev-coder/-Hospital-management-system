@@ -1,0 +1,82 @@
+{% extends 'admin_base.html'%}{% block content %} {% load widget_tweaks %}
+<style media="screen">
+    a:link {
+        text-decoration: none;
+    }
+    
+    .note {
+        text-align: center;
+        height: 80px;
+        background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+        color: #fff;
+        font-weight: bold;
+        line-height: 80px;
+    }
+    
+    .form-content {
+        padding: 5%;
+        border: 1px solid #ced4da;
+        margin-bottom: 2%;
+    }
+    
+    .form-control {
+        border-radius: 1.5rem;
+    }
+    
+    .btnSubmit {
+        border: none;
+        border-radius: 1.5rem;
+        padding: 1%;
+        width: 20%;
+        cursor: pointer;
+        background: #0062cc;
+        color: #fff;
+    }
+    
+    .menu {
+        top: 50px;
+    }
+    
+    .custorm-contaier {
+        margin-left: 250px;
+        margin-bottom: 0px;
+    }
+</style>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+
+    <div class="custorm-contaier">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container register-form">
+                <div class="form">
+                    <div class="note">
+                        <p>Admit Set Appointments Patient with Doctor</p>
+                    </div>
+                    <div class="form-content">
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    {% render_field appointmentform.description class="form-control" placeholder="description" %}
+                                </div>
+                                <div class="form-group">
+                                    {% render_field appointmentform.doctorId class="form-control" placeholder="doctorId" %}
+                                </div>
+
+                                <div class="form-group">
+                                    {% render_field appointmentform.patientId class="form-control" placeholder="patientId " %}
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btnSubmit">Book</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>{% endblock content %}

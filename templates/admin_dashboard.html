@@ -1,0 +1,274 @@
+{% extends "admin_base.html"%} {% block content %}
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">ALI HOSPITAL</h1>
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>{{doctorcount}}</h3>
+
+                                    <p>Total Doctors</p>
+                                    <h6>Pending Doctors : {{pendingdoctor}}</h6>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>{{patientcount}}</h3>
+
+                                    <p>Total Admitted Patients</p>
+                                    <h6>Pending Patient: {{pendingpatient}}</h6>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-4 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h3>{{appointmentcount}}</h3>
+
+                                    <p>Total Approved Appointments</p>
+                                    <h6>Pending Appointments : {{pendingappointment}}</h6>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+                        <!-- ./col -->
+                    </div>
+                    <section class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+                                    <h1>Hospital Records</h1>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.container-fluid -->
+                    </section>
+
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Doctors</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Mobile Number</th>
+                                                        <th>Department</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for d in doctor %}
+                                                    <tr>
+                                                        <td>{{d.get_id}}</td>
+                                                        <td>{{d.get_name}}</td>
+                                                        <td>
+                                                            {{d.mobile}}
+                                                        </td>
+                                                        <td>{{d.department}}</td>
+                                                        {%if d.status%}
+                                                        <td> <span class="label label-primary">Permanent</span></td>
+                                                        {% else %}
+                                                        <td> <span class="label label-success">On Hold</span></td>
+                                                        {% endif %}
+                                                    </tr>
+                                                    {% endfor %}
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer clearfix">
+                                            <ul class="pagination pagination-sm m-0 float-right">
+                                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /.card -->
+
+
+                                    <!-- /.card -->
+                                </div>
+                                <!-- /.col -->
+
+                                <!-- /.col -->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Patient</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 10px">ID</th>
+                                                        <th>Name</th>
+                                                        <th>Symptoms</th>
+                                                        <th>AssignedDoctorname</th>
+                                                        <th>admitDate</th>
+                                                        <th>status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>{% for p in patient %}
+                                                    <tr>
+                                                        <td>{{p.get_id}}</td>
+                                                        <td>{{p.get_name}}</td>
+                                                        <td>
+                                                            {{p.symptoms}}
+                                                        </td>
+                                                        <td>{{p.assignedDoctorname}}</td>
+                                                        <td>{{p.admitDate}}</td>{% if p.status %}
+                                                        <td> <span class="label label-primary">Admitted</span></td>
+                                                        {% else %}
+                                                        <td> <span class="label label-success">On Hold</span></td>{% endif %}
+                                                    </tr>{% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer clearfix">
+                                            <ul class="pagination pagination-sm m-0 float-right">
+                                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /.card -->
+
+
+                                    <!-- /.card -->
+                                </div>
+                                <!-- /.col -->
+
+                                <!-- /.col -->
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Appointments</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Patient Name</th>
+                                                        <th>Doctor Name</th>
+                                                        <th>Appointments Date</th>
+
+                                                        <th>Status</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for a in appointment %}
+                                                    <tr>
+                                                        <td>{{a.patientName}}</td>
+                                                        <td>{{a.doctorName}}</td>
+                                                        <td>
+                                                            {{a.appointmentDate}}
+                                                        </td>
+
+                                                        {%if a.status%}
+                                                        <td> <span class="label label-primary">Permanent</span></td>
+                                                        {% else %}
+                                                        <td> <span class="label label-success">On Hold</span></td>
+                                                        {% endif %}
+                                                    </tr>
+                                                    {% endfor %}
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.card-body -->
+                                        <div class="card-footer clearfix">
+                                            <ul class="pagination pagination-sm m-0 float-right">
+                                                <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- /.card -->
+
+
+                                    <!-- /.card -->
+                                </div>
+                                <!-- /.col -->
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+                            <!-- /.row -->
+
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.container-fluid -->
+                    </section>
+
+</body>{% endblock content %}

@@ -1,0 +1,80 @@
+<!-- Content Wrapper. Contains page content -->
+{% extends 'doctor_base.html'%} {% block content %}
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Patients Records</h1>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- /.col -->
+                    <div class="col-md-12">
+
+                        <!-- /.card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Patients</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Picture</th>
+                                            <th>Address</th>
+                                            <th>Mobile</th>
+                                            <th>Symptoms</th>
+                                            <th>AdmitDate</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>{% for p in patients %}
+                                        <tr>
+                                            <td>{{p.get_id}}</td>
+                                            <td>{{p.get_name}}</td>
+                                            <td>
+                                                <img src="/profile_pic/{{p.profile_pic}}" alt="Profile Image" height="40px" width="40px">
+                                            </td>
+                                            <td>{{p.address}}</td>
+                                            <td>{{p.mobile}}</td>
+                                            <td>{{p.symptoms}}</td>
+                                            <td>{{p.admitDate}}</td>
+                                        </tr>
+                                        {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+</body> {% endblock content %}

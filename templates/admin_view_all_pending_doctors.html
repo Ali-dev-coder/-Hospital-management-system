@@ -1,0 +1,88 @@
+<!-- Content Wrapper. Contains page content -->
+{% extends 'admin_base.html'%} {% block content %}
+
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>Pending Doctors</h1>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- /.col -->
+                    <div class="col-md-12">
+
+                        <!-- /.card -->
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Doctors</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body p-0">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Picture</th>
+                                            <th>address</th>
+                                            <th>mobile</th>
+                                            <th>department</th>
+                                            <th>Approved</th>
+                                            <th>Delete</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>{% for pd in pending_doctors %}
+                                        <tr>
+                                            <td>{{pd.get_id}}</td>
+                                            <td>{{pd.get_name}}</td>
+                                            <td>
+                                                <img src="/profile_pic/{{pd.profile_pic}}" alt="Profile Image" height="40px" width="40px">
+                                            </td>
+                                            <td>{{pd.address}}</td>
+                                            <td>{{pd.mobile}}</td>
+                                            <td>{{pd.department}}</td>
+                                            <td><a class="btn btn-primary btn-xs" href="{% url 'admin_approved_pending_doctor' pd.id  %}"><span class="glyphicon glyphicon-ok"></span></a></td>
+                                            <td><a class="btn btn-danger btn-xs" href="{% url 'admin_delete_pending_doctor' pd.id  %}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                        </tr>
+                                        {% endfor %}
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+
+                <!-- /.row -->
+
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+</body> {% endblock content %}

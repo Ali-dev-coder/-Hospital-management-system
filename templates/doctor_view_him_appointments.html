@@ -1,0 +1,133 @@
+{% extends "doctor_base.html"%} {% block content %}
+
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">ALI HOSPITAL</h1>
+                        </div>
+                        <!-- /.col -->
+
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Small boxes (Stat box) -->
+                    <div class="row">
+                        <!-- ./col -->
+
+                        <!-- ./col -->
+
+                        <!-- ./col -->
+                    </div>
+                    <section class="content-header">
+                        <div class="container-fluid">
+                            <div class="row mb-2">
+                                <div class="col-sm-6">
+                                    <h1>Hospital Records</h1>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- /.container-fluid -->
+                    </section>
+
+                    <section class="content">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">Appointments</h3>
+                                        </div>
+                                        <!-- /.card-header -->
+                                        <div class="card-body">
+                                            <table class="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>patientId</th>
+                                                        <th>Picture</th>
+                                                        <th>patientName</th>
+                                                        <th>appointmentDate</th>
+                                                        <th>address</th>
+                                                        <th>appointmenttime</th>
+                                                        <th>mobile</th>
+                                                        <th>symptoms</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for a,p in combine_appointments_and_patients %}
+                                                    <tr>
+                                                        <td>{{a.patientId}}</td>
+                                                        <td><img src="/profile_pic/{{p.profile_pic}}" alt="" height="40px" width="40px"></td>
+                                                        <td>{{a.patientName}}</td>
+                                                        <td>
+                                                            {{a.appointmentDate}}
+                                                        </td>
+                                                        <td>
+                                                            {{p.address}}
+                                                        </td>
+                                                        <td>
+                                                            {{a.appointmenttime}}
+                                                        </td>
+                                                        <td>
+                                                            {{p.mobile}}
+                                                        </td>
+                                                        <td>
+                                                            {{p.symptoms}}
+                                                        </td>
+
+
+
+                                                    </tr>
+                                                    {% endfor %}
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.card-body -->
+
+                                    </div>
+                                    <!-- /.card -->
+
+
+                                    <!-- /.card -->
+                                </div>
+                                <!-- /.col -->
+
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+
+                            <!-- /.row -->
+
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.container-fluid -->
+                    </section>
+
+</body>{% endblock content %}
