@@ -1,4 +1,4 @@
-name: Django CI/CD
+name: Django CI/CD to PythonAnywhere
 
 on:
   push:
@@ -27,18 +27,25 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r req.txt
 
-    # 4️⃣ Run migrations
+    # 4️⃣ Run Django migrations (locally if needed for tests)
     - name: Run migrations
       run: |
         python manage.py migrate
 
-    # 5️⃣ Deploy to PythonAnywhere
+    # 5️⃣ Deploy to PythonAnywhere via SSH
     - name: Deploy to PythonAnywhere
       env:
-        PA_USERNAME: ${{ secrets.PYTHONANYWHERE_USERNAME }}
-        PA_API_TOKEN: ${{ secrets.PYTHONANYWHERE_API_TOKEN }}
+        PA_USERNAME: ${{ secrets.PA_USERNAME }}
+        PA_SSH_KEY: ${{ secrets.PA_SSH_KEY }}   # Private SSH key added to GitHub secrets
       run: |
-        curl -X POST https://www.pythonanywhere.com/api/v0/user/$PA_USERNAME/webapps/ \
-        -H "Authorization: Token $PA_API_TOKEN" \
-        -d "domain=https://${{ secrets.PYTHONANYWHERE_USERNAME }}.pythonanywhere.com/" \
-        -d "action=reload"
+        mkdir -p ~/.ssh
+        echo "$PA_SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+
+        ssh -o StrictHostKeyChecking=no $PA_USERNAME@ssh.pythonanywhere.com "
+          cd ~/yourproject &&    # <-- Replace with your project folder on PA
+          git pull origin main &&
+          python3.10 -m pip install -r req.txt &&
+          python3.10 manage.py migrate &&
+          pa_reload_webapp $PA_USERNAME.pythonanywhere.com
+        "
