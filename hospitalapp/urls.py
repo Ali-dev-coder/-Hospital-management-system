@@ -76,7 +76,7 @@ urlpatterns = [
     path("doctor_dashboard",doctor_dashboard,name="doctor_dashboard"),
     path("doctor_view_patient",doctor_view_patient,name = "doctor_view_patient"),
     
-    path("logout",LogoutView.as_view(template_name = "index.html"),name = "logout"),
+    # path("logout",LogoutView.as_view(template_name = "index.html"),name = "logout"),
     
     ##<======== patients urls===============>
     # path("patientlogin",LoginView.as_view(template_name = "patientlogin.html")),
