@@ -39,11 +39,11 @@ jobs:
         PA_SSH_KEY: ${{ secrets.PA_SSH_KEY }}   # Private SSH key added to GitHub secrets
       run: |
         # mkdir -p ~/.ssh
-        echo "$PA_SSH_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
+        # echo "$PA_SSH_KEY" > ~/.ssh/id_rsa
+        # chmod 600 ~/.ssh/id_rsa
 
-        ssh -o StrictHostKeyChecking=no $PA_USERNAME@ssh.pythonanywhere.com "
-          # cd ~/Hospital-management-system &&    # <-- Replace with your project folder on PA
+        # ssh -o StrictHostKeyChecking=no $PA_USERNAME@ssh.pythonanywhere.com "
+        #   # cd ~/Hospital-management-system &&    # <-- Replace with your project folder on PA
           git pull &&
           python3.10 -m pip install -r req.txt &&
           python3.10 manage.py migrate &&
