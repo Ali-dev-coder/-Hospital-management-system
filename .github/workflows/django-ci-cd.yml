@@ -40,5 +40,5 @@ jobs:
       run: |
         curl -X POST https://www.pythonanywhere.com/api/v0/user/$PA_USERNAME/webapps/ \
         -H "Authorization: Token $PA_API_TOKEN" \
-        -d "domain=pythonanywhere.com" \
+        -d "domain=https://${{ secrets.PYTHONANYWHERE_USERNAME }}.pythonanywhere.com/" \
         -d "action=reload"
