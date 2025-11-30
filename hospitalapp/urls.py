@@ -35,7 +35,7 @@ from .views import (admin_dashboardviews,
                     )
 
 
-# from django.contrib.auth.views import LoginView,LogoutView
+from django.contrib.auth.views import LoginView,LogoutView
 from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
@@ -44,7 +44,7 @@ urlpatterns = [
     path("",home,name = "home"),
     ##<===== Admin Urls ====>
     path("admin_sign_up",admin_sign_up,name = "admin_sign_up"),
-    # path("adminlogin",LoginView.as_view(template_name = "adminlogin.html")),
+    path("adminlogin",LoginView.as_view(template_name = "adminlogin.html")),
     path("admin_dashboard",admin_dashboardviews, name='admin_dashboard'),
     path("admin-view-approved-doctor-records",admin_view_approved_doctor_records, name='admin-view-approved-doctor-records'),
     path("admin_add_doctors",admin_add_doctors,name = "admin_add_doctors"),
@@ -72,14 +72,14 @@ urlpatterns = [
     ##<====  doctor urls ====>
     
     path("doctor_sign_up",doctor_sign_up,name = "doctor_sign_up"),
-    # path("doctorlogin",LoginView.as_view(template_name = "doctorlogin.html")),
+    path("doctorlogin",LoginView.as_view(template_name = "doctorlogin.html")),
     path("doctor_dashboard",doctor_dashboard,name="doctor_dashboard"),
     path("doctor_view_patient",doctor_view_patient,name = "doctor_view_patient"),
     
-    # path("logout",LogoutView.as_view(template_name = "index.html"),name = "logout"),
+    path("logout",LogoutView.as_view(template_name = "index.html"),name = "logout"),
     
     ##<======== patients urls===============>
-    # path("patientlogin",LoginView.as_view(template_name = "patientlogin.html")),
+    path("patientlogin",LoginView.as_view(template_name = "patientlogin.html")),
     path("patient_sign_up",patient_sign_up,name = "patient_sign_up"),
     path("patient_dashboard",patient_dashboard,name="patient_dashboard"),
     path("patient_request_for_appointment",patient_request_for_appointment,name = "patient_request_for_appointment"),
