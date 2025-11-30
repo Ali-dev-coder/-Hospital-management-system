@@ -97,7 +97,7 @@ def afterlogin_redirect(request):
 
 
 ## <===========  Admin Related views =============>
-@login_required(login_url="adminlogin")
+# @login_required(login_url="adminlogin")
 def admin_dashboardviews(request):
     doctor = Doctormodel.objects.all().order_by("id")
     patient = Patientmodel.objects.all().order_by("id")
