@@ -13,6 +13,9 @@ from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request,"index.html")
+
+def home_two(request):
+    return {"msg":"OK Message ......"}
 def admin_sign_up(request):
     userform = Adminsignupform()
     if request.method == "POST":
